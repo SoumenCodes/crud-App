@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../slice/productSlice";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
-import { setProducts } from "../slice/productSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ProductDetails() {
   const navigate = useNavigate();
