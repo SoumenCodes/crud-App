@@ -14,9 +14,7 @@ const user = {
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Add Product", href: "/admin", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-  { name: "Reports", href: "#", current: false },
+  { name: "Product List", href: "/productList", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -56,9 +54,9 @@ const Navbar = () => {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
-                            href={item.href}
+                            to={item.href}
                             className={classNames(
                               item.current
                                 ? "bg-gray-900 text-white"
@@ -68,7 +66,7 @@ const Navbar = () => {
                             aria-current={item.current ? "page" : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -211,13 +209,13 @@ const Navbar = () => {
           )}
         </Disclosure>
 
-        <header className="bg-white shadow">
+        {/* <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900">
               Home Page
             </h1>
           </div>
-        </header>
+        </header> */}
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             {/* Your content */}
