@@ -1,92 +1,123 @@
 // src/components/AddProduct.js
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../slice/productSlice";
+import React, { useState, useEffect } from "react";
+// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addProduct, setProducts } from "../slice/productSlice";
 import axios from "axios";
+import ProductTable from "./ProductTable";
 
 const AddProduct = () => {
-  const dispatch = useDispatch();
-  const [newProduct, setNewProduct] = useState({
-    name: "",
-    brand: "",
-    price: 0,
-    image: "",
-    id: null, // id will be assigned by json-server
-  });
+	const dispatch = useDispatch();
+	const products = useSelector((state) => state.products);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewProduct({ ...newProduct, [name]: value });
-  };
+	const [newProduct, setNewProduct] = useState({
+		name: "",
+		brand: "",
+		price: 0,
+		image: "",
+	});
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setNewProduct({ ...newProduct, [name]: value });
+	};
 
-    // Adding product to db.json using json-server
-    axios
-      .post("http://localhost:5000/products", newProduct)
-      .then((response) => {
-        // Adding product to Redux store
-        dispatch(addProduct(response.data));
-      })
-      .catch((error) => console.error(error));
+	const handleFormSubmit = (e) => {
+		e.preventDefault();
+		const { name, brand, price, image } = newProduct;
 
-    // Clearing the form fields after submission
-    setNewProduct({
-      name: "",
-      brand: "",
-      price: 0,
-      image: "",
-      id: null,
-    });
-  };
+		// Adding product to db.json using json-server
+		axios
+			.post("http://localhost:3000/products", {
+				name,
+				brand,
+			})
+			.then((response) => {
+				// Adding product to Redux store
+				dispatch(addProduct(response.data));
+			})
+			.catch((error) => console.error(error));
 
-  return (
-    <div>
-      <h1>Add Product</h1>
-      <form onSubmit={handleFormSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={newProduct.name}
-          onChange={handleInputChange}
-          required
-        />
+		// Clearing the form fields after submission
+		setNewProduct({
+			name: "",
+			brand: "",
+			price: 0,
+			image: "",
+		});
+	};
 
-        <label>Brand:</label>
-        <input
-          type="text"
-          name="brand"
-          value={newProduct.brand}
-          onChange={handleInputChange}
-          required
-        />
+	const deleteProduct = async (id) => {
+		await axios.delete(`http://localhost:3000/products/${id}`);
+		const product = products.find((product) => product.id == id);
+		console.log(product);
+	};
 
-        <label>Price:</label>
-        <input
-          type="number"
-          name="price"
-          value={newProduct.price}
-          onChange={handleInputChange}
-          required
-        />
+	useEffect(() => {
+		axios
+			.get("http://localhost:3000/products")
+			.then((response) => dispatch(setProducts(response.data)))
+			.catch((error) => console.error(error));
+	}, [products]);
 
-        <label>Image URL:</label>
-        <input
-          type="url"
-          name="image"
-          value={newProduct.image}
-          onChange={handleInputChange}
-          required
-        />
+	return (
+		<div>
+			<h1>Add Product</h1>
+			<form onSubmit={handleFormSubmit}>
+				<label>Name:</label>
+				<input
+					type="text"
+					name="name"
+					value={newProduct.name}
+					onChange={handleInputChange}
+					required
+				/>
 
-        {/* id is not editable by the user, so we don't include it in the form */}
+				<label>Brand:</label>
+				<input
+					type="text"
+					name="brand"
+					value={newProduct.brand}
+					onChange={handleInputChange}
+					required
+				/>
 
-        <button type="submit">Add Product</button>
-      </form>
-    </div>
-  );
+				<label>Price:</label>
+				<input
+					type="number"
+					name="price"
+					value={parseInt(newProduct.price)}
+					onChange={handleInputChange}
+					required
+				/>
+
+				<label>Image URL:</label>
+				<input
+					type="url"
+					name="image"
+					value={newProduct.image}
+					onChange={handleInputChange}
+					required
+				/>
+
+				{/* id is not editable by the user, so we don't include it in the form */}
+
+				<button type="submit">Add Product</button>
+			</form>
+			<div>
+				{products?.map((item) => (
+					<>
+						<ProductTable
+							data={item}
+							key={item?.id}
+							deleteProduct={deleteProduct}
+						/>
+					</>
+				))}
+			</div>
+		</div>
+	);
 };
 
 export default AddProduct;
