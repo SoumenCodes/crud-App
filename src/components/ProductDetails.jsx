@@ -33,8 +33,8 @@ function ProductDetails() {
       <h2 className="text-4xl font-bold tracking-tight text-gray-900 text-center">
         Product Details {products.name}
       </h2>
-      <div className="flex-col md:flex-row justify-between  flex gap-4 items-start mx-4 py-12">
-        <div className="mx-auto">
+      <div className=" flex-col md:flex-row justify-between  flex gap-4 items-start mx-4 py-12">
+        <div className="mx-auto" style={{ minWidth: "500px" }}>
           <div>
             <div className="flex bg-white rounded-lg shadow dark:bg-gray-800 p-4">
               <div className="relative flex-none w-24 md:w-48">

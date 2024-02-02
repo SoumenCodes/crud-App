@@ -158,48 +158,6 @@ const EditProduct = () => {
           </div>
         </form>
       </div>
-      <h1>Edit Product</h1>
-      <form onSubmit={handleFormSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={editedProduct.name}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>Brand:</label>
-        <input
-          type="text"
-          name="brand"
-          value={editedProduct.brand}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>Price:</label>
-        <input
-          type="number"
-          name="price"
-          value={editedProduct.price}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>Image URL:</label>
-        <input
-          type="url"
-          name="image"
-          value={editedProduct.image}
-          onChange={handleInputChange}
-          required
-        />
-
-        {/* id is not editable by the user, so we don't include it in the form */}
-
-        <button type="submit">Edit Product</button>
-      </form>
     </div>
   );
 };

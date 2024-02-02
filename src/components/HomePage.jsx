@@ -1,14 +1,14 @@
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { setProducts } from "../slice/productSlice";
 
 const HomePage = () => {
@@ -24,17 +24,6 @@ const HomePage = () => {
 
   return (
     <div>
-      {/* <div>
-        <h1 style={{ textAlign: "center" }}>Product List</h1>
-        <ul>
-          {products.map((product) => (
-            <li key={product.id}>
-              <img src={product.image} alt={product.name} />
-              <p>{product.name}</p>
-            </li>
-          ))}
-        </ul>
-      </div> */}
       <div className="bg-white">
         <div>
           <h2 className="text-4xl font-bold tracking-tight text-gray-900 text-center">
@@ -50,31 +39,6 @@ const HomePage = () => {
             }}
           >
             {products.map((product) => (
-              // <div key={product.id} className="group relative">
-              //   <div className=" aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 ">
-              //     <img
-              //       src={product.image}
-              //       alt={product.imageAlt}
-              //       className=" h-full w-full object-cover object-center lg:h-full lg:w-full"
-              //     />
-              //   </div>
-              //   <div className="mt-4 flex justify-between">
-              //     <div>
-              //       <h3 className="text-sm text-gray-700">
-              //         <a href={product.href}>
-              //           <span aria-hidden="true" className="absolute inset-0" />
-              //           {product.name}
-              //         </a>
-              //       </h3>
-              //       <p className="mt-1 text-sm text-gray-500">
-              //         {product.color}
-              //       </p>
-              //     </div>
-              //     <p className="text-sm font-medium text-gray-900">
-              //       {product.price}
-              //     </p>
-              //   </div>
-              // </div>
               <Card
                 sx={{
                   minWidth: 345,

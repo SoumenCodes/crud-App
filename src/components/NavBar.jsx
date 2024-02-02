@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import {} from "@heroicons/react/24/outline";
-import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Fragment } from "react";
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
@@ -29,14 +28,6 @@ function classNames(...classes) {
 const Navbar = () => {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/admin">Add Product</Link>
-        </li>
-      </ul>
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
@@ -82,7 +73,6 @@ const Navbar = () => {
                         <BellIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
 
-                      {/* Profile dropdown */}
                       <Menu as="div" className="relative ml-3">
                         <div>
                           <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -209,17 +199,8 @@ const Navbar = () => {
           )}
         </Disclosure>
 
-        {/* <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900">
-              Home Page
-            </h1>
-          </div>
-        </header> */}
         <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-            {/* Your content */}
-          </div>
+          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8"></div>
         </main>
       </div>
     </nav>

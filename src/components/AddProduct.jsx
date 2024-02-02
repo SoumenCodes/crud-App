@@ -1,18 +1,12 @@
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Switch } from "@headlessui/react";
-
 // import * as React from 'react';
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 
 // src/components/AddProduct.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import { useDispatch } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addProduct, setProducts } from "../slice/productSlice";
 import axios from "axios";
-import ProductTable from "./ProductTable";
+import { addProduct } from "../slice/productSlice";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -171,59 +165,6 @@ const AddProduct = () => {
           </div>
         </form>
       </div>
-      {/* <h1>Add Product</h1>
-      <form onSubmit={handleFormSubmit}>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={newProduct.name}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>Brand:</label>
-        <input
-          type="text"
-          name="brand"
-          value={newProduct.brand}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>Price:</label>
-        <input
-          type="number"
-          name="price"
-          value={parseInt(newProduct.price)}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label>Image URL:</label>
-        <input
-          type="url"
-          name="image"
-          value={newProduct.image}
-          onChange={handleInputChange}
-          required
-        />
-
-       
-
-        <button type="submit">Add Product</button>
-      </form> */}
-      {/* <div>
-        {products?.map((item) => (
-          <>
-            <ProductTable
-              data={item}
-              key={item?.id}
-              deleteProduct={deleteProduct}
-            />
-          </>
-        ))}
-      </div> */}
     </div>
   );
 };

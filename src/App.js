@@ -19,7 +19,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/admin" element={<AddProduct />} />
         <Route path="products/:id/edit" element={<EditProduct />} />
-        {/* <Route path="/products/:id/edit" element={<EditProduct />} /> */}
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/productList" element={<ProductList />} />
       </Routes>
